@@ -81,7 +81,8 @@ function addItem(product, qty = 1) {
 }
 document.addEventListener("DOMContentLoaded", async e => {
     // products.innerHTML = "???";
-    const response = await fetch("./data/products.json");
+    // const response = await fetch("./data/products.json");
+    const response = await fetch("http://localhost:9090/product/"); //GET
     const data = await response.json();
     data.forEach(p => products.appendChild(getProduct(p)));
 })
