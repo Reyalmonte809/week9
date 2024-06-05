@@ -46,16 +46,18 @@ function getDescription(description) {
 
     return div
 }
-function getLine(item){
-    const ext = item.qty + item.product.price;
+function getLine(item) {
+    const ext = item.qty * item.product.price;
     return `
-    <tr>
-        <td class="qty">    ${item.qty}</td> 
-        <td class="name">   ${itme.product.name}</td> 
-        <td class="desc">   ${item.product.desc}</td> 
-        <td class="price">$ ${item.product.price.toFixed(2)}</td> 
-        <td class="ext">$   ${ext.toFixed(2)}</td> 
-    </tr>
+        <tr>
+            <td class="qty"><input type="number" value="${item.qty}"></td>
+            <td class="name">    ${item.product.name}</td>
+            <td class="desc">    ${item.product.description}</td>
+            <td class="price"> $ ${item.product.price.toFixed(2)}</td>
+            <td class="ext">   $ ${ext.toFixed(2)}</td>
+            <td class="actions"><span class="remove">remove</span></td>
+            
+        </tr>
     `;
 }
 function displayCart() {
@@ -66,15 +68,15 @@ function displayCart() {
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Extended Price</th>
+            <th>EXT PRICE</th>
+            <th>Actions</th>
         </tr>
         ${cartItems.map(getLine).join("")}
     </table>`
 }
-
 let cartItems = [];
 function addItem(product, qty = 1) {
-    cartItems.push({ "qty": qty, "product": product })
+    cartItems.push({ "qty": qty, "product": product }) //create object literal
     displayCart();
 }
 document.addEventListener("DOMContentLoaded", async e => {
